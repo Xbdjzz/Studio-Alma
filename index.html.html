@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'Œil et la Bouche — Restaurant Végétarien · Les Lilas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F2E8;
+    --cream-dark: #EDE5D2;
+    --terra: #B85C30;
+    --terra-light: #D4784A;
+    --terra-pale: #F5E6DC;
+    --sage: #6A8F62;
+    --sage-light: #8AAE80;
+    --sage-pale: #E2EDD9;
+    --brown: #2A1B0E;
+    --brown-mid: #5C3D20;
+    --brown-light: #9A7050;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--cream);
+    color: var(--brown);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(247,242,232,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(42,27,14,0.08);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 2px 24px rgba(42,27,14,0.08); }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    color: var(--brown);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--terra); font-style: italic; }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brown-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--terra); }
+
+  .nav-cta {
+    background: var(--terra);
+    color: #fff !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 2rem;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--terra-light) !important; color: #fff !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 5rem;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    padding: 6rem 4rem 4rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--sage);
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-weight: 300;
+    line-height: 1.08;
+    margin-bottom: 1rem;
+  }
+  .hero-title .line1 {
+    font-size: clamp(3.2rem, 5vw, 5.5rem);
+    font-style: italic;
+    color: var(--brown);
+    display: block;
+  }
+  .hero-title .amp {
+    font-size: clamp(2rem, 3vw, 3.2rem);
+    color: var(--brown-light);
+    display: block;
+    margin: 0.1em 0;
+  }
+  .hero-title .line2 {
+    font-size: clamp(3.2rem, 5vw, 5.5rem);
+    color: var(--terra);
+    display: block;
+  }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--brown-mid);
+    max-width: 30ch;
+    margin: 2rem 0 2.5rem;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--terra);
+    color: #fff;
+    padding: 0.85rem 2.2rem;
+    border-radius: 3rem;
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--terra-light); transform: translateY(-1px); }
+
+  .btn-outline {
+    color: var(--brown);
+    padding: 0.85rem 2.2rem;
+    border-radius: 3rem;
+    border: 1.5px solid var(--brown-mid);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    font-weight: 400;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--terra); color: var(--terra); transform: translateY(-1px); }
+
+  .hero-badges {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .badge {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 0.9rem;
+    border-radius: 2rem;
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .badge-green { border-color: var(--sage); color: var(--sage); background: var(--sage-pale); }
+  .badge-terra { border-color: var(--terra); color: var(--terra); background: var(--terra-pale); }
+
+  .hero-right {
+    position: relative;
+    background: var(--sage-pale);
+    overflow: hidden;
+  }
+
+  .hero-illustration {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Decorative botanical circles */
+  .botanical-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+  .circle-large {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--sage-light);
+    opacity: 0.15;
+    width: 70%;
+    aspect-ratio: 1;
+    top: 10%; left: 15%;
+  }
+  .circle-med {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--terra);
+    opacity: 0.1;
+    width: 40%;
+    aspect-ratio: 1;
+    bottom: 10%; right: 5%;
+  }
+
+  .food-card-stack {
+    position: relative;
+    width: 340px;
+    height: 420px;
+  }
+  .food-card {
+    position: absolute;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(42,27,14,0.12);
+  }
+  .food-card-main {
+    width: 260px;
+    height: 320px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(160deg, #c8d9a0, #8aae80);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .food-card-tag {
+    position: absolute;
+    bottom: -3.5rem;
+    right: -1.5rem;
+    background: var(--terra-pale);
+    border: 1.5px solid var(--terra);
+    padding: 0.8rem 1.2rem;
+    border-radius: 1rem;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--terra);
+    white-space: nowrap;
+    z-index: 2;
+  }
+  .food-card-mini {
+    width: 130px;
+    height: 130px;
+    bottom: 2rem;
+    left: -2rem;
+    background: var(--terra-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rating-pill {
+    position: absolute;
+    top: 2rem; right: -1rem;
+    background: var(--cream);
+    border: 1.5px solid var(--cream-dark);
+    padding: 0.6rem 1rem;
+    border-radius: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--brown);
+    box-shadow: 0 4px 20px rgba(42,27,14,0.1);
+  }
+  .star { color: #E8A832; font-size: 0.9rem; }
+
+  /* ── SECTION SHARED ── */
+  section { position: relative; }
+
+  .section-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .section-tag::before {
+    content: '';
+    display: block;
+    width: 1.5rem;
+    height: 1.5px;
+    background: var(--terra);
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+    line-height: 1.15;
+    color: var(--brown);
+    margin-bottom: 1rem;
+  }
+  .section-title em { color: var(--terra); font-style: italic; }
+
+  /* ── VALEURS ── */
+  .valeurs {
+    padding: 6rem 5rem;
+    background: var(--brown);
+    color: var(--cream);
+  }
+  .valeurs-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .valeurs-text .section-tag { color: var(--terra-light); }
+  .valeurs-text .section-tag::before { background: var(--terra-light); }
+  .valeurs-text .section-title { color: var(--cream); }
+  .valeurs-text p {
+    color: rgba(247,242,232,0.72);
+    font-size: 1.05rem;
+    line-height: 1.85;
+    max-width: 40ch;
+  }
+
+  .valeurs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+  .valeur-card {
+    background: rgba(247,242,232,0.06);
+    border: 1px solid rgba(247,242,232,0.12);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: background 0.2s;
+  }
+  .valeur-card:hover { background: rgba(247,242,232,0.1); }
+  .valeur-icon {
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+  .valeur-card h4 {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 0.4rem;
+  }
+  .valeur-card p {
+    font-size: 0.82rem;
+    color: rgba(247,242,232,0.55);
+    line-height: 1.6;
+  }
+
+  /* ── MENU ── */
+  .menu {
+    padding: 6rem 5rem;
+    background: var(--cream);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .menu-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .menu-note {
+    font-size: 0.8rem;
+    color: var(--brown-light);
+    font-style: italic;
+    font-family: var(--serif);
+    font-size: 1rem;
+  }
+
+  .menu-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.55rem 1.5rem;
+    border-radius: 2rem;
+    border: 1.5px solid var(--cream-dark);
+    background: transparent;
+    color: var(--brown-mid);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .tab-btn.active, .tab-btn:hover {
+    background: var(--terra);
+    border-color: var(--terra);
+    color: #fff;
+  }
+
+  .menu-panel { display: none; }
+  .menu-panel.active { display: block; }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.2rem;
+  }
+  .dish-card {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(42,27,14,0.07);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .dish-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--sage);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .dish-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(42,27,14,0.08);
+  }
+  .dish-card:hover::before { opacity: 1; }
+  .dish-name {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--brown);
+    margin-bottom: 0.4rem;
+  }
+  .dish-desc {
+    font-size: 0.82rem;
+    color: var(--brown-light);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  .dish-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .dish-price {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--terra);
+  }
+  .dish-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.7rem;
+    border-radius: 2rem;
+    background: var(--sage-pale);
+    color: var(--sage);
+    text-transform: uppercase;
+  }
+  .dish-tag.v { background: var(--terra-pale); color: var(--terra); }
+
+  /* ── ABOUT ── */
+  .about {
+    padding: 6rem 5rem;
+    background: var(--terra-pale);
+  }
+  .about-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-img-wrap {
+    border-radius: 2rem;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    background: linear-gradient(160deg, var(--sage-pale), var(--sage-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Decorative eye + mouth SVG */
+  .about-deco-text {
+    position: absolute;
+    bottom: -1.5rem;
+    right: -2rem;
+    background: var(--cream);
+    border: 2px solid var(--terra-pale);
+    box-shadow: 0 8px 32px rgba(42,27,14,0.12);
+    padding: 1.2rem 1.6rem;
+    border-radius: 1rem;
+  }
+  .about-deco-text strong {
+    display: block;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--terra);
+    font-weight: 400;
+  }
+  .about-deco-text span {
+    font-size: 0.72rem;
+    color: var(--brown-light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .about-text p {
+    font-size: 1.02rem;
+    color: var(--brown-mid);
+    line-height: 1.85;
+    margin-bottom: 1.2rem;
+  }
+  .about-highlights {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(42,27,14,0.1);
+  }
+  .highlight-num {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--terra);
+    line-height: 1;
+  }
+  .highlight-label {
+    font-size: 0.75rem;
+    color: var(--brown-light);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.3rem;
+  }
+
+  /* ── INFOS ── */
+  .infos {
+    padding: 6rem 5rem;
+    background: var(--cream);
+  }
+  .infos-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .infos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .info-card {
+    background: #fff;
+    border: 1px solid rgba(42,27,14,0.07);
+    border-radius: 1.2rem;
+    padding: 2rem;
+    transition: box-shadow 0.2s;
+  }
+  .info-card:hover { box-shadow: 0 4px 24px rgba(42,27,14,0.08); }
+  .info-icon {
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+  .info-icon-terra { background: var(--terra-pale); }
+  .info-icon-sage { background: var(--sage-pale); }
+  .info-icon-cream { background: var(--cream-dark); }
+
+  .info-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--brown-light);
+    margin-bottom: 0.5rem;
+  }
+  .info-value {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    color: var(--brown);
+    line-height: 1.5;
+  }
+  .info-sub {
+    font-size: 0.8rem;
+    color: var(--brown-light);
+    margin-top: 0.3rem;
+  }
+
+  .hours-grid {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid rgba(42,27,14,0.05);
+    color: var(--brown-mid);
+  }
+  .hours-row:last-child { border-bottom: none; }
+  .hours-row .day { color: var(--brown-light); }
+  .closed { color: var(--brown-light); font-style: italic; }
+
+  /* ── MAP + CONTACT ── */
+  .contact {
+    background: var(--sage-pale);
+    padding: 6rem 5rem;
+  }
+  .contact-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brown-mid);
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: #fff;
+    border: 1.5px solid rgba(42,27,14,0.12);
+    border-radius: 0.6rem;
+    padding: 0.7rem 1rem;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--brown);
+    transition: border-color 0.2s;
+    outline: none;
+    width: 100%;
+    -webkit-appearance: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--terra); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .contact-map {
+    border-radius: 1.5rem;
+    overflow: hidden;
+    height: 360px;
+    background: var(--cream-dark);
+    border: 1px solid rgba(42,27,14,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+  }
+  .map-placeholder-text {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--brown-mid);
+    text-align: center;
+  }
+  .map-address {
+    font-size: 0.82rem;
+    color: var(--brown-light);
+    text-align: center;
+  }
+  .map-btn {
+    background: var(--terra);
+    color: #fff;
+    padding: 0.6rem 1.5rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    transition: background 0.2s;
+    display: inline-block;
+  }
+  .map-btn:hover { background: var(--terra-light); }
+
+  /* Embedded iframe map */
+  .map-frame {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 1.5rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--brown);
+    color: var(--cream);
+    padding: 4rem 5rem 2.5rem;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(247,242,232,0.08);
+    margin-bottom: 2rem;
+  }
+  .footer-brand-name {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+  .footer-brand-name em { color: var(--terra-light); font-style: italic; }
+  .footer-tagline {
+    font-size: 0.85rem;
+    color: rgba(247,242,232,0.55);
+    line-height: 1.7;
+    max-width: 28ch;
+  }
+  .footer-socials {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+  }
+  .social-btn {
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    border: 1px solid rgba(247,242,232,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(247,242,232,0.6);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .social-btn:hover { border-color: var(--terra-light); color: var(--terra-light); }
+
+  .footer-col h5 {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(247,242,232,0.45);
+    margin-bottom: 1.2rem;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li {
+    font-size: 0.85rem;
+    color: rgba(247,242,232,0.65);
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
+  }
+  .footer-col a {
+    color: rgba(247,242,232,0.65);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--cream); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-bottom p {
+    font-size: 0.75rem;
+    color: rgba(247,242,232,0.3);
+  }
+  .rainbow-badge {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: rgba(247,242,232,0.5);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .rainbow { 
+    background: linear-gradient(90deg, #e74c3c, #e67e22, #f1c40f, #2ecc71, #3498db, #9b59b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+  }
+
+  /* ── ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 7rem 2rem 3rem; }
+    .hero-right { min-height: 50vw; }
+    .valeurs { padding: 4rem 2rem; }
+    .valeurs-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .menu { padding: 4rem 1.5rem; }
+    .about { padding: 4rem 2rem; }
+    .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .infos { padding: 4rem 2rem; }
+    .contact { padding: 4rem 2rem; }
+    .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    footer { padding: 3rem 2rem 2rem; }
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">L'<span>Œil</span> et la Bouche</a>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#infos">Infos pratiques</a></li>
+    <li><a href="#contact" class="nav-cta">Nous trouver</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="home">
+  <div class="hero-left reveal">
+    <p class="hero-eyebrow">Restaurant végétarien · Les Lilas</p>
+    <h1 class="hero-title">
+      <span class="line1">L'Œil</span>
+      <span class="amp">&amp;</span>
+      <span class="line2">La Bouche</span>
+    </h1>
+    <p class="hero-desc">
+      Un lieu où le beau rencontre le bon. Cuisine végétarienne maison, savoureuse et accessible, dans un cadre chaleureux aux Lilas.
+    </p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn-primary">Voir le menu</a>
+      <a href="#contact" class="btn-outline">Nous trouver</a>
+    </div>
+    <div class="hero-badges">
+      <span class="badge badge-green">🌿 100% Végétarien</span>
+      <span class="badge badge-terra">🏠 Fait maison</span>
+      <span class="badge badge-green">⭐ 4,8 · 79 avis</span>
+      <span class="badge badge-terra">🏳️‍🌈 LGBTQ+ friendly</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="botanical-bg">
+      <div class="circle-large"></div>
+      <div class="circle-med"></div>
+    </div>
+    <div class="hero-illustration">
+      <div class="food-card-stack">
+        <!-- Main decorative card -->
+        <div class="food-card food-card-main">
+          <svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+            <!-- Abstract vegetal illustration -->
+            <circle cx="100" cy="100" r="90" fill="rgba(255,255,255,0.15)"/>
+            <!-- Leaf shapes -->
+            <ellipse cx="80" cy="70" rx="28" ry="48" fill="rgba(255,255,255,0.25)" transform="rotate(-20 80 70)"/>
+            <ellipse cx="130" cy="80" rx="22" ry="40" fill="rgba(255,255,255,0.2)" transform="rotate(15 130 80)"/>
+            <ellipse cx="100" cy="130" rx="30" ry="20" fill="rgba(255,255,255,0.18)" transform="rotate(-5 100 130)"/>
+            <!-- Center -->
+            <circle cx="100" cy="100" r="18" fill="rgba(255,255,255,0.3)"/>
+            <text x="100" y="106" text-anchor="middle" font-family="Georgia, serif" font-size="20" fill="rgba(255,255,255,0.9)">✿</text>
+          </svg>
+        </div>
+        <!-- Mini card -->
+        <div class="food-card food-card-mini">
+          <svg viewBox="0 0 100 100" width="80" height="80" xmlns="http://www.w3.org/2000/svg">
+            <text x="50" y="58" text-anchor="middle" font-size="42">🥗</text>
+          </svg>
+        </div>
+        <!-- Tag -->
+        <div class="food-card-tag">Fait maison ✦</div>
+      </div>
+      <!-- Rating pill -->
+      <div class="rating-pill">
+        <span class="star">★</span> 4,8 <span style="color:#9A7050;font-weight:300;font-size:0.75rem;">(79)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── VALEURS ── -->
+<section class="valeurs">
+  <div class="valeurs-inner">
+    <div class="valeurs-text reveal">
+      <p class="section-tag">Notre philosophie</p>
+      <h2 class="section-title" style="color:var(--cream);">Deux sens,<br><em>une expérience</em></h2>
+      <p style="margin-top:1rem;">
+        L'Œil pour la beauté du lieu et de l'assiette. La Bouche pour le plaisir du goût. Chez nous, chaque détail est pensé pour nourrir les deux.
+      </p>
+    </div>
+    <div class="valeurs-grid reveal">
+      <div class="valeur-card">
+        <span class="valeur-icon">🌱</span>
+        <h4>Végétarien</h4>
+        <p>Une cuisine végétale généreuse, ancrée dans les saisons et les produits locaux.</p>
+      </div>
+      <div class="valeur-card">
+        <span class="valeur-icon">🏠</span>
+        <h4>Fait maison</h4>
+        <p>Chaque plat est préparé sur place, avec soin et sans compromis sur la qualité.</p>
+      </div>
+      <div class="valeur-card">
+        <span class="valeur-icon">🤝</span>
+        <h4>Accueillant</h4>
+        <p>Un espace ouvert à toutes et tous, chaleureux et sans jugement.</p>
+      </div>
+      <div class="valeur-card">
+        <span class="valeur-icon">✨</span>
+        <h4>Simple & beau</h4>
+        <p>La simplicité comme art de vivre — des saveurs claires, une ambiance apaisante.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MENU ── -->
+<section class="menu" id="menu">
+  <div class="menu-header reveal">
+    <div>
+      <p class="section-tag">À la carte</p>
+      <h2 class="section-title">Notre <em>menu</em></h2>
+    </div>
+    <p class="menu-note">Sélection du moment · Menu en français &amp; anglais</p>
+  </div>
+
+  <div class="menu-tabs reveal">
+    <button class="tab-btn active" onclick="switchTab('petitdej')">☀️ Petit déjeuner</button>
+    <button class="tab-btn" onclick="switchTab('dejeuner')">🥗 Déjeuner</button>
+    <button class="tab-btn" onclick="switchTab('boissons')">☕ Boissons</button>
+  </div>
+
+  <!-- Petit déjeuner -->
+  <div class="menu-panel active" id="tab-petitdej">
+    <div class="menu-grid reveal">
+      <div class="dish-card">
+        <p class="dish-name">Tartines du jardin</p>
+        <p class="dish-desc">Pain de campagne grillé, avocat, radis, graines de courge, citron vert</p>
+        <div class="dish-footer">
+          <span class="dish-price">9 €</span>
+          <span class="dish-tag">végétalien</span>
+        </div>
+      </div>
+      <div class="dish-card">
+        <p class="dish-name">Bowl du matin</p>
+        <p class="dish-desc">Granola maison, yaourt de brebis, compote de saison, miel de fleurs</p>
+        <div class="dish-footer">
+          <span class="dish-price">10 €</span>
+          <span class="dish-tag v">fait maison</span>
+        </div>
+      </div>
+      <div class="dish-card">
+        <p class="dish-name">Œufs en cocotte</p>
+        <p class="dish-desc">Œufs bio, coulis de tomates confites, herbes fraîches, pain toasté</p>
+        <div class="dish-footer">
+          <span class="dish-price">11 €</span>
+          <span class="dish-tag v">fait maison</span>
+        </div>
+      </div>
+      <div class="dish-card">
+        <p class="dish-name">Pancakes aux flocons</p>
+        <p class="dish-desc">Flocons d'avoine, banane, sirop d'érable, fruits rouges de saison</p>
+        <div class="dish-footer">
+          <span class="dish-price">10 €</span>
+          <span class="dish-tag">végétalien</span>
+        </div>
+      </div>
+      <div class="dish-card">
+        <p class="dish-name">English Breakfast (V)</p>
+        <p class="dish-desc">Baked beans, champignons grillés, tomates rôties, œufs brouillés, toast</p>
+        <div class="dish-footer">
+          <span class="dish-price">14 €</span>
+          <span class="dish-tag v">incontournable</span>
+        </div>
+      </div>
+      <div class="dish-card">
+        <p class="dish-name">Croque végétal</p>
+        <p class="dish-desc">Pain de mie, béchamel maison, légumes grillés, comté AOP</p>
+        <div class="dish-footer">
+          <span class="dish-price">12 €</span>
+          <span class="dish-tag v">fait maison</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Déjeuner -->
+  <div class="menu-panel" id="tab-dejeuner">
+    <div class="menu-grid reveal">
+      <div class="dish-card">
+        <p class="dish-name">Salade de saison</p>
+        <p class="dish-desc">Mesclun, légumes rôtis, pois chiches croustillants, vinaigrette au citron</p>
+        <div class="dish-footer">
+          <span class="dish-price">13 €</span>
+          <span class="dish-tag">végétalien</span>
+        </div>
+      </div>
+      <div class="dish-card">
+        <p class="dish-name">Risotto aux herbes</p>
+        <p class="dish-desc">Riz arborio, bouillon de légumes, pesto maison, parmesan, basilic frais</p>
+        <div class="dish-footer">
+          <span class="dish-price">15 €</span>
+          <span class="dish-tag v">fait maison</span>
+        </div>
+      </div>
+      <div class="dish-card">
+        <p class="dish-name">Burger végétal</p>
+        <p class="dish-desc">Steak de lentilles maison, cheddar, salade, sauce moutarde douce, frites</p>
+        <div class="dish-footer">
+          <span class="dish-price">16 €</span>
+          <span class="dish-tag v">incontournable</span>
+        </div>
+      </div>
+      <div class="dish-card">
+        <p class="dish-name">Curry de pois chiches</p>
+        <p class="dish-desc">Lait de coco, épinards, tomates, gingembre, riz basmati, coriandre</p>
+        <div class="dish-footer">
+          <span class="dish-price">14 €</span>
+          <span class="dish-tag">végétalien</span>
+        </div>
+      </div>
+      <div class="dish-card">
+        <p class="dish-name">Quiche du jour</p>
+        <p class="dish-desc">Pâte brisée maison, garniture selon le marché, salade verte</p>
+        <div class="dish-footer">
+          <span class="dish-price">13 €</span>
+          <span class="dish-tag v">fait maison</span>
+        </div>
+      </div>
+      <div class="dish-card">
+        <p class="dish-name">Assiette de fromages</p>
+        <p class="dish-desc">Sélection de fromages affinés, confiture maison, pain aux noix</p>
+        <div class="dish-footer">
+          <span class="dish-price">14 €</span>
+          <span class="dish-tag v">fait maison</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Boissons -->
+  <div class="menu-panel" id="tab-boissons">
+    <div class="menu-grid reveal">
+      <div class="dish-card">
+        <p class="dish-name">Café de spécialité</p>
+        <p class="dish-desc">Expresso, allongé, cappuccino ou latte — grain torréfié artisanalement</p>
+        <div class="dish-footer">
+          <span class="dish-price">3–5 €</span>
+          <span class="dish-tag">chaud</span>
+        </div>
+      </div>
+      <div class="dish-card">
+        <p class="dish-name">Thés &amp; infusions</p>
+        <p class="dish-desc">Sélection de thés bio, infusions florales, matcha en cérémonie</p>
+        <div class="dish-footer">
+          <span class="dish-price">3–5 €</span>
+          <span class="dish-tag">chaud</span>
+        </div>
+      </div>
+      <div class="dish-card">
+        <p class="dish-name">Jus pressés</p>
+        <p class="dish-desc">Orange, pomme-gingembre, carotte-citron — pressés à la demande</p>
+        <div class="dish-footer">
+          <span class="dish-price">5 €</span>
+          <span class="dish-tag">végétalien</span>
+        </div>
+      </div>
+      <div class="dish-card">
+        <p class="dish-name">Lemonades maison</p>
+        <p class="dish-desc">Citron-basilic, hibiscus-gingembre, concombre-menthe — fraîches et naturelles</p>
+        <div class="dish-footer">
+          <span class="dish-price">5 €</span>
+          <span class="dish-tag v">fait maison</span>
+        </div>
+      </div>
+      <div class="dish-card">
+        <p class="dish-name">Vins nature</p>
+        <p class="dish-desc">Sélection de vins biodynamiques, en verre ou en carafe</p>
+        <div class="dish-footer">
+          <span class="dish-price">6–9 €</span>
+          <span class="dish-tag">verre</span>
+        </div>
+      </div>
+      <div class="dish-card">
+        <p class="dish-name">Kombucha</p>
+        <p class="dish-desc">Brassé sur place, parfums qui changent chaque semaine selon l'humeur</p>
+        <div class="dish-footer">
+          <span class="dish-price">5 €</span>
+          <span class="dish-tag v">fait maison</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-visual reveal">
+      <div class="about-img-wrap">
+        <svg viewBox="0 0 300 380" width="300" height="380" xmlns="http://www.w3.org/2000/svg">
+          <!-- Stylized food illustration -->
+          <circle cx="150" cy="190" r="120" fill="rgba(255,255,255,0.3)"/>
+          <!-- Bowl -->
+          <ellipse cx="150" cy="230" rx="85" ry="30" fill="rgba(255,255,255,0.4)"/>
+          <path d="M 65 230 Q 65 300 150 305 Q 235 300 235 230 Z" fill="rgba(255,255,255,0.35)"/>
+          <!-- Food items -->
+          <circle cx="130" cy="215" r="18" fill="rgba(184,92,48,0.5)"/>
+          <circle cx="165" cy="210" r="14" fill="rgba(106,143,98,0.6)"/>
+          <circle cx="150" cy="230" r="12" fill="rgba(255,220,180,0.5)"/>
+          <ellipse cx="145" cy="218" rx="22" ry="10" fill="rgba(255,255,255,0.25)"/>
+          <!-- Leaves -->
+          <ellipse cx="110" cy="155" rx="15" ry="35" fill="rgba(106,143,98,0.4)" transform="rotate(-25 110 155)"/>
+          <ellipse cx="190" cy="148" rx="12" ry="28" fill="rgba(106,143,98,0.35)" transform="rotate(20 190 148)"/>
+          <ellipse cx="150" cy="130" rx="10" ry="25" fill="rgba(106,143,98,0.3)" transform="rotate(5 150 130)"/>
+          <!-- Text -->
+          <text x="150" y="360" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="16" fill="rgba(42,27,14,0.4)">L'Œil et la Bouche</text>
+        </svg>
+      </div>
+      <div class="about-deco-text">
+        <strong>Depuis 2016</strong>
+        <span>Aux Lilas, Seine-Saint-Denis</span>
+      </div>
+    </div>
+
+    <div class="about-text reveal">
+      <p class="section-tag">Notre histoire</p>
+      <h2 class="section-title">Un lieu pensé<br>pour <em>tous les sens</em></h2>
+      <p>
+        L'Œil et la Bouche est né d'une passion double : le goût du beau et le plaisir du bon. Nichée au cœur des Lilas, notre adresse est bien plus qu'un restaurant — c'est un espace de vie, de partage et de curiosité.
+      </p>
+      <p>
+        Ici, tout est fait maison. De nos sauces aux desserts, en passant par nos kombucha, chaque préparation est pensée avec soin pour vous offrir une expérience végétarienne généreuse, sans jamais se priver de saveurs.
+      </p>
+      <p>
+        Ouvert à toutes et à tous, notre espace accueille les matins pressés comme les déjeuners prolongés, dans une atmosphère chaleureuse et bienveillante.
+      </p>
+      <div class="about-highlights">
+        <div>
+          <p class="highlight-num">4,8 ★</p>
+          <p class="highlight-label">Note moyenne</p>
+        </div>
+        <div>
+          <p class="highlight-num">79</p>
+          <p class="highlight-label">Avis clients</p>
+        </div>
+        <div>
+          <p class="highlight-num">10–20€</p>
+          <p class="highlight-label">Prix moyen</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── INFOS PRATIQUES ── -->
+<section class="infos" id="infos">
+  <div class="infos-inner">
+    <div class="reveal">
+      <p class="section-tag">Informations</p>
+      <h2 class="section-title">Infos <em>pratiques</em></h2>
+    </div>
+    <div class="infos-grid">
+      <div class="info-card reveal">
+        <div class="info-icon info-icon-terra">📍</div>
+        <p class="info-label">Adresse</p>
+        <p class="info-value">8 Rue Raymonde Salez<br>93260 Les Lilas</p>
+        <p class="info-sub">Proche Mairie des Lilas (Ligne 11)</p>
+      </div>
+      <div class="info-card reveal">
+        <div class="info-icon info-icon-sage">📞</div>
+        <p class="info-label">Téléphone</p>
+        <p class="info-value"><a href="tel:0188503117" style="color:var(--terra);text-decoration:none;">01 88 50 31 17</a></p>
+        <p class="info-sub">Réservations et renseignements</p>
+      </div>
+      <div class="info-card reveal">
+        <div class="info-icon info-icon-cream">🚀</div>
+        <p class="info-label">Services</p>
+        <div class="info-value" style="font-family:var(--sans);font-size:0.85rem;margin-top:0.3rem;">
+          <div style="display:flex;flex-direction:column;gap:0.4rem;margin-top:0.3rem;">
+            <span>🍽️ Repas sur place</span>
+            <span>📦 Vente à emporter</span>
+            <span>🛵 Livraison disponible</span>
+          </div>
+        </div>
+      </div>
+      <div class="info-card reveal" style="grid-column: span 1;">
+        <div class="info-icon info-icon-terra">🕐</div>
+        <p class="info-label">Horaires</p>
+        <div class="hours-grid">
+          <div class="hours-row"><span class="day">Lundi</span><span>08h20 – 17h00</span></div>
+          <div class="hours-row"><span class="day">Mardi</span><span>08h20 – 17h00</span></div>
+          <div class="hours-row"><span class="day">Mercredi</span><span>08h20 – 17h00</span></div>
+          <div class="hours-row"><span class="day">Jeudi</span><span>08h20 – 17h00</span></div>
+          <div class="hours-row"><span class="day">Vendredi</span><span>08h20 – 17h00</span></div>
+          <div class="hours-row"><span class="day">Samedi</span><span>09h00 – 17h30</span></div>
+          <div class="hours-row"><span class="day">Dimanche</span><span class="closed">Fermé</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT / MAP ── -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <p class="section-tag">Nous trouver</p>
+      <h2 class="section-title">Venez nous<br><em>rendre visite</em></h2>
+      <p style="color:var(--brown-mid);font-size:1rem;margin:1.2rem 0 2rem;line-height:1.8;max-width:36ch;">
+        Envie de réserver une table ou simplement de nous poser une question ? Écrivez-nous ci-dessous.
+      </p>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Prénom</label>
+            <input type="text" placeholder="Marie">
+          </div>
+          <div class="form-group">
+            <label>Nom</label>
+            <input type="text" placeholder="Dupont">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="marie@email.com">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Date souhaitée</label>
+            <input type="date">
+          </div>
+          <div class="form-group">
+            <label>Nombre de couverts</label>
+            <select>
+              <option>1 personne</option>
+              <option>2 personnes</option>
+              <option>3–4 personnes</option>
+              <option>5+ personnes</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Message (optionnel)</label>
+          <textarea placeholder="Allergies, occasion spéciale, demande particulière..."></textarea>
+        </div>
+        <button class="btn-primary" style="align-self:flex-start;border:none;cursor:pointer;font-family:var(--sans);" onclick="alert('Merci ! Votre demande a bien été envoyée. Nous vous répondrons très vite 🌿')">
+          Envoyer ma demande →
+        </button>
+      </div>
+    </div>
+
+    <div class="contact-map reveal">
+      <iframe
+        class="map-frame"
+        loading="lazy"
+        allowfullscreen
+        src="https://maps.google.com/maps?q=8+Rue+Raymonde+Salez,+93260+Les+Lilas&output=embed&z=16">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <p class="footer-brand-name">L'<em>Œil</em> et la Bouche</p>
+      <p class="footer-tagline">Restaurant végétarien fait maison aux Lilas. Un lieu où le beau et le bon se retrouvent autour de la table.</p>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/loeiletlabouche/" target="_blank" class="social-btn" title="Instagram">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        </a>
+        <a href="https://www.facebook.com/loeiletlaboucheblog/" target="_blank" class="social-btn" title="Facebook">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://www.pinterest.fr/loeiletlabouche/" target="_blank" class="social-btn" title="Pinterest">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-3.6 19.3c-.1-.7-.2-1.8 0-2.6l1.3-5.5s-.3-.7-.3-1.7c0-1.6.9-2.8 2.1-2.8 1 0 1.5.7 1.5 1.6 0 1-.6 2.5-.9 3.8-.3 1.1.5 2 1.5 2 1.8 0 3-1.9 3-4.6 0-2.4-1.7-4.1-4.2-4.1-2.8 0-4.5 2.1-4.5 4.3 0 .9.3 1.8.7 2.3.1.1.1.2.1.3l-.3 1.2c0 .1-.2.2-.3.1-1.3-.6-2.1-2.5-2.1-4 0-3.3 2.4-6.3 6.9-6.3 3.6 0 6.4 2.6 6.4 6 0 3.6-2.3 6.5-5.4 6.5-1.1 0-2.1-.6-2.4-1.2l-.7 2.5c-.2.9-.8 2-1.2 2.7A10 10 0 1 0 12 2z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Navigation</h5>
+      <ul>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#infos">Infos pratiques</a></li>
+        <li><a href="#contact">Nous contacter</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li>8 Rue Raymonde Salez<br>93260 Les Lilas</li>
+        <li><a href="tel:0188503117">01 88 50 31 17</a></li>
+        <li>Lundi–Vendredi 08h20–17h</li>
+        <li>Samedi 09h–17h30</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 L'Œil et la Bouche · Tous droits réservés</p>
+    <p class="rainbow-badge"><span class="rainbow">🏳️‍🌈</span> LGBTQ+ friendly space</p>
+  </div>
+</footer>
+
+<script>
+  // Tab switching
+  function switchTab(id) {
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Hero reveal immediately
+  setTimeout(() => {
+    document.querySelector('.hero-left').classList.add('visible');
+  }, 100);
+</script>
+</body>
+</html>
