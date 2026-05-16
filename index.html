@@ -53,14 +53,20 @@
   nav.scrolled { box-shadow: 0 2px 24px rgba(42,27,14,0.08); }
 
   .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    text-decoration: none;
+  }
+  .nav-logo-svg { width: 38px; height: 38px; flex-shrink: 0; }
+  .nav-logo-text {
     font-family: var(--serif);
     font-size: 1.1rem;
     font-weight: 400;
     letter-spacing: 0.05em;
     color: var(--brown);
-    text-decoration: none;
   }
-  .nav-logo span { color: var(--terra); font-style: italic; }
+  .nav-logo-text span { color: var(--terra); font-style: italic; }
 
   .nav-links {
     display: flex;
@@ -879,7 +885,16 @@
 
 <!-- ── NAV ── -->
 <nav id="navbar">
-  <a href="#" class="nav-logo">L'<span>Œil</span> et la Bouche</a>
+  <a href="#" class="nav-logo">
+    <svg class="nav-logo-svg" viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 10 38 Q 20 8 35 22 Q 44 30 50 26 Q 56 30 65 22 Q 80 8 90 38 Q 70 26 50 31 Q 30 26 10 38 Z" fill="#E8192C"/>
+      <path d="M 10 38 Q 30 26 50 31 Q 70 26 90 38 Q 78 68 50 70 Q 22 68 10 38 Z" fill="#C8101E"/>
+      <ellipse cx="50" cy="43" rx="19" ry="13" fill="white"/>
+      <circle cx="50" cy="43" r="7.5" fill="#1a1a1a"/>
+      <circle cx="53" cy="40" r="2.5" fill="white" opacity="0.75"/>
+    </svg>
+    <span class="nav-logo-text">L'<span>Œil</span> et la Bouche</span>
+  </a>
   <ul class="nav-links">
     <li><a href="#menu">Menu</a></li>
     <li><a href="#about">À propos</a></li>
@@ -916,34 +931,27 @@
       <div class="circle-large"></div>
       <div class="circle-med"></div>
     </div>
-    <div class="hero-illustration">
-      <div class="food-card-stack">
-        <!-- Main decorative card -->
-        <div class="food-card food-card-main">
-          <svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
-            <!-- Abstract vegetal illustration -->
-            <circle cx="100" cy="100" r="90" fill="rgba(255,255,255,0.15)"/>
-            <!-- Leaf shapes -->
-            <ellipse cx="80" cy="70" rx="28" ry="48" fill="rgba(255,255,255,0.25)" transform="rotate(-20 80 70)"/>
-            <ellipse cx="130" cy="80" rx="22" ry="40" fill="rgba(255,255,255,0.2)" transform="rotate(15 130 80)"/>
-            <ellipse cx="100" cy="130" rx="30" ry="20" fill="rgba(255,255,255,0.18)" transform="rotate(-5 100 130)"/>
-            <!-- Center -->
-            <circle cx="100" cy="100" r="18" fill="rgba(255,255,255,0.3)"/>
-            <text x="100" y="106" text-anchor="middle" font-family="Georgia, serif" font-size="20" fill="rgba(255,255,255,0.9)">✿</text>
-          </svg>
-        </div>
-        <!-- Mini card -->
-        <div class="food-card food-card-mini">
-          <svg viewBox="0 0 100 100" width="80" height="80" xmlns="http://www.w3.org/2000/svg">
-            <text x="50" y="58" text-anchor="middle" font-size="42">🥗</text>
-          </svg>
-        </div>
-        <!-- Tag -->
-        <div class="food-card-tag">Fait maison ✦</div>
-      </div>
-      <!-- Rating pill -->
-      <div class="rating-pill">
-        <span class="star">★</span> 4,8 <span style="color:#9A7050;font-weight:300;font-size:0.75rem;">(79)</span>
+    <div class="hero-illustration" style="flex-direction:column; gap:2rem;">
+      <!-- Grand logo centré -->
+      <svg viewBox="0 0 300 240" width="320" height="240" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 12px 40px rgba(232,25,44,0.18)); max-width:85%;">
+        <!-- Lèvre supérieure -->
+        <path d="M 20 118 Q 45 28 90 68 Q 118 92 150 80 Q 182 92 210 68 Q 255 28 280 118 Q 218 82 150 94 Q 82 82 20 118 Z" fill="#E8192C"/>
+        <!-- Lèvre inférieure -->
+        <path d="M 20 118 Q 82 82 150 94 Q 218 82 280 118 Q 258 208 150 215 Q 42 208 20 118 Z" fill="#C8101E"/>
+        <!-- Blanc de l'œil -->
+        <ellipse cx="150" cy="136" rx="58" ry="40" fill="white"/>
+        <!-- Iris -->
+        <circle cx="150" cy="136" r="24" fill="#1a1a1a"/>
+        <!-- Reflet principal -->
+        <circle cx="159" cy="127" r="8" fill="white" opacity="0.8"/>
+        <!-- Petit reflet -->
+        <circle cx="143" cy="145" r="3.5" fill="white" opacity="0.35"/>
+      </svg>
+      <!-- Rating pill sous le logo -->
+      <div class="rating-pill" style="position:static; box-shadow: 0 4px 20px rgba(42,27,14,0.1);">
+        <span class="star">★</span> 4,8 <span style="color:#9A7050;font-weight:300;font-size:0.75rem;">(79 avis)</span>
+        &nbsp;·&nbsp;
+        <span style="font-size:0.75rem;color:var(--brown-light);">🌿 Végétarien</span>
       </div>
     </div>
   </div>
@@ -1168,23 +1176,13 @@
   <div class="about-inner">
     <div class="about-visual reveal">
       <div class="about-img-wrap">
-        <svg viewBox="0 0 300 380" width="300" height="380" xmlns="http://www.w3.org/2000/svg">
-          <!-- Stylized food illustration -->
-          <circle cx="150" cy="190" r="120" fill="rgba(255,255,255,0.3)"/>
-          <!-- Bowl -->
-          <ellipse cx="150" cy="230" rx="85" ry="30" fill="rgba(255,255,255,0.4)"/>
-          <path d="M 65 230 Q 65 300 150 305 Q 235 300 235 230 Z" fill="rgba(255,255,255,0.35)"/>
-          <!-- Food items -->
-          <circle cx="130" cy="215" r="18" fill="rgba(184,92,48,0.5)"/>
-          <circle cx="165" cy="210" r="14" fill="rgba(106,143,98,0.6)"/>
-          <circle cx="150" cy="230" r="12" fill="rgba(255,220,180,0.5)"/>
-          <ellipse cx="145" cy="218" rx="22" ry="10" fill="rgba(255,255,255,0.25)"/>
-          <!-- Leaves -->
-          <ellipse cx="110" cy="155" rx="15" ry="35" fill="rgba(106,143,98,0.4)" transform="rotate(-25 110 155)"/>
-          <ellipse cx="190" cy="148" rx="12" ry="28" fill="rgba(106,143,98,0.35)" transform="rotate(20 190 148)"/>
-          <ellipse cx="150" cy="130" rx="10" ry="25" fill="rgba(106,143,98,0.3)" transform="rotate(5 150 130)"/>
-          <!-- Text -->
-          <text x="150" y="360" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="16" fill="rgba(42,27,14,0.4)">L'Œil et la Bouche</text>
+        <svg viewBox="0 0 300 240" width="280" height="224" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 12px 40px rgba(232,25,44,0.18));">
+          <path d="M 20 118 Q 45 28 90 68 Q 118 92 150 80 Q 182 92 210 68 Q 255 28 280 118 Q 218 82 150 94 Q 82 82 20 118 Z" fill="#E8192C"/>
+          <path d="M 20 118 Q 82 82 150 94 Q 218 82 280 118 Q 258 208 150 215 Q 42 208 20 118 Z" fill="#C8101E"/>
+          <ellipse cx="150" cy="136" rx="58" ry="40" fill="white"/>
+          <circle cx="150" cy="136" r="24" fill="#1a1a1a"/>
+          <circle cx="159" cy="127" r="8" fill="white" opacity="0.8"/>
+          <circle cx="143" cy="145" r="3.5" fill="white" opacity="0.35"/>
         </svg>
       </div>
       <div class="about-deco-text">
